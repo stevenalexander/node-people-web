@@ -1,4 +1,4 @@
-# Node People API
+# Node People Web
 
 [![BuildStatus](https://travis-ci.org/stevenalexander/node-people-web.svg?branch=master)](https://travis-ci.org/stevenalexander/node-people-web?branch=master)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
