@@ -36,4 +36,8 @@ module.exports = function (app) {
       }
     })
   })
+
+  route.get('/status', function (req, res) {
+    res.render('status', { title: 'STATUS', status: 'OK' })
+  })
 }
