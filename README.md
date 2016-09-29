@@ -20,3 +20,16 @@ npm install
 # available http://localhost:3000
 npm start
 ```
+
+### Run in container
+
+```
+# Spin up MySql, node-people-api and node-people-web containers
+docker-compose up
+```
+
+## Test
+
+```
+npm test
+```
