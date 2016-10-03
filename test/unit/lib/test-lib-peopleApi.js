@@ -18,7 +18,7 @@ describe('peopleApi', function () {
       post: requestPost,
       delete: requestDelete
     }
-    peopleApi = proxyquire('../../lib/peopleApi', {'request': request})
+    peopleApi = proxyquire('../../../app/lib/peopleApi', {'request': request})
   })
 
   describe('get', function () {

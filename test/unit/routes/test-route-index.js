@@ -5,7 +5,7 @@ var supertest = require('supertest')
 var expect = require('chai').expect
 var express = require('express')
 var bodyParser = require('body-parser')
-var peopleApi = require('../../lib/peopleApi')
+var peopleApi = require('../../../app/lib/peopleApi')
 
 describe('index', function () {
   var request
@@ -13,13 +13,11 @@ describe('index', function () {
   beforeEach(function () {
     // Setting up the app this way means all dependencies from app.js are explicitly defined per route file
     var app = express()
-    app.set('views', './views')
+    app.set('views', './app/views')
     app.set('view engine', 'pug')
     app.use(bodyParser.urlencoded({ extended: false }))
 
-    var route = proxyquire('../../routes/index', {
-      '../../lib/peopleApi': peopleApi
-    })
+    var route = proxyquire('../../../app/routes/index', { '../../../app/lib/peopleApi': peopleApi })
 
     // Inversion of control on route file
     // http://evanshortiss.com/development/javascript/2016/04/15/express-testing-using-ioc.html

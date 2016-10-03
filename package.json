@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "node_modules/.bin/standard && node_modules/.bin/mocha -u exports test/**/*"
+    "start": "node ./app/bin/www",
+    "test": "node_modules/.bin/standard && node_modules/.bin/mocha -u exports test/unit/**/*"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -15,11 +15,17 @@
     "request": "^2.75.0"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-webdriver": "^2.0.2",
     "mocha": "^3.0.2",
     "proxyquire": "^1.7.10",
+    "selenium-standalone": "^5.7.2",
     "sinon": "^1.17.5",
     "standard": "^8.0.0",
-    "supertest": "^2.0.0"
+    "supertest": "^2.0.0",
+    "wdio-mocha-framework": "^0.4.3",
+    "webdriverio": "^4.2.16"
   }
 }
