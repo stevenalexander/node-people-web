@@ -2,36 +2,25 @@
 var expect = require('chai').expect
 var sinon = require('sinon')
 var proxyquire = require('proxyquire')
+var request = require('request-promise')
+
+require('sinon-bluebird')
 
 describe('peopleApi', function () {
   var peopleApi
-  var request
-  var requestGet
-  var requestPost
-  var requestDelete
+
   before(function () {
-    requestGet = sinon.stub()
-    requestPost = sinon.stub()
-    requestDelete = sinon.stub()
-    request = {
-      get: requestGet,
-      post: requestPost,
-      delete: requestDelete
-    }
-    peopleApi = proxyquire('../../../app/lib/peopleApi', {'request': request})
+    peopleApi = proxyquire('../../../app/lib/peopleApi', {'request-promise': request})
   })
 
   describe('get', function () {
     it('should call API and parse body', function () {
-      var person = { name: 'Adam' }
-      var body = JSON.stringify([person])
+      var people = [{ name: 'Bill' }]
+      var stubGet = sinon.stub(request, 'get').resolves(people)
 
-      requestGet.yields(null, { statusCode: 200 }, body)
-
-      peopleApi.get(function (error, people) {
-        expect(error).to.be.null
-        expect(people.length).to.equal(1)
-        expect(people[0].name).to.equal(person.name)
+      peopleApi.get().then(function (list) {
+        expect(list[0].name).to.equal('Bill')
+        expect(stubGet.called).to.be.true
       })
     })
   })
@@ -39,20 +28,22 @@ describe('peopleApi', function () {
   describe('add', function () {
     it('should call API with post and data', function () {
       var person = { name: 'Bill' }
-      requestPost.yields(null, { statusCode: 201 })
+      var newPerson = { id: 1, name: 'Bill' }
+      var stubPost = sinon.stub(request, 'post').resolves(newPerson)
 
-      peopleApi.add(person, function (error, newPerson) {
-        expect(error).to.be.null
+      peopleApi.add(person).then(function (person) {
+        expect(person.name).to.equal('Bill')
+        expect(stubPost.called).to.be.true
       })
     })
   })
 
   describe('del', function () {
     it('should call API and delete and id', function () {
-      requestDelete.withArgs(13).yields(null, { statusCode: 204 })
+      var stubDel = sinon.stub(request, 'delete').resolves()
 
-      peopleApi.del(13, function (error) {
-        expect(error).to.be.null
+      peopleApi.del(1).then(function () {
+        expect(stubDel.called).to.be.true
       })
     })
   })

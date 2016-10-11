@@ -6,6 +6,7 @@ var expect = require('chai').expect
 var express = require('express')
 var bodyParser = require('body-parser')
 var peopleApi = require('../../../app/lib/peopleApi')
+require('sinon-bluebird')
 
 describe('index', function () {
   var request
@@ -19,8 +20,6 @@ describe('index', function () {
 
     var route = proxyquire('../../../app/routes/index', { '../../../app/lib/peopleApi': peopleApi })
 
-    // Inversion of control on route file
-    // http://evanshortiss.com/development/javascript/2016/04/15/express-testing-using-ioc.html
     route(app)
 
     request = supertest(app)
@@ -29,9 +28,7 @@ describe('index', function () {
   describe('GET /', function () {
     it('should respond with a 500 on peopleApi client error', function (done) {
       if (peopleApi.get.restore) peopleApi.get.restore()
-      sinon.stub(peopleApi, 'get', function (callback) {
-        callback({ message: 'error' }, null)
-      })
+      sinon.stub(peopleApi, 'get').rejects('Error!')
 
       request
         .get('/')
@@ -41,9 +38,7 @@ describe('index', function () {
 
     it('should respond with a 200 and render items', function (done) {
       if (peopleApi.get.restore) peopleApi.get.restore()
-      var getStub = sinon.stub(peopleApi, 'get', function (callback) {
-        callback(null, [{id: 1, name: 'Adam'}])
-      })
+      var getStub = sinon.stub(peopleApi, 'get').resolves([{id: 1, name: 'Adam'}])
 
       request
         .get('/')
@@ -56,14 +51,12 @@ describe('index', function () {
     })
   })
 
-  describe('POST /add', function () {
+  describe('POST /new', function () {
     it('should respond with a 200 and redirect', function (done) {
-      var addStub = sinon.stub(peopleApi, 'add', function (person, callback) {
-        callback(null, {name: 'Cheese'})
-      })
+      var addStub = sinon.stub(peopleApi, 'add').resolves({name: 'Cheese'})
 
       request
-        .post('/add')
+        .post('/new')
         .send({name: 'Cheese'})
         .expect(302, function (error, response) {
           expect(addStub.calledOnce).to.be.true
@@ -73,14 +66,12 @@ describe('index', function () {
     })
   })
 
-  describe('GET /delete/1234', function () {
+  describe('POST /delete/1234', function () {
     it('should respond with a 200 and redirect', function (done) {
-      var delStub = sinon.stub(peopleApi, 'del', function (id, callback) {
-        callback(null)
-      })
+      var delStub = sinon.stub(peopleApi, 'del').resolves()
 
       request
-        .get('/delete/1234')
+        .post('/delete/1234')
         .expect(302, function (error, response) {
           expect(delStub.calledOnce).to.be.true
           expect(error).to.be.null

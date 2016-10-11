@@ -1,16 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  div
-    ul(class='people')
-      each person in people
-        li(class='person', data-name= person.name)
-          span= person.name
-          | &nbsp;
-          a(class='delete', href='/delete/' + person.id) x
+  div(class='row')
+    table(class='table')
+      thead
+        tr
+          th Name
+          th DOB
+          th Status
+      tbody
+        each person in people
+          tr
+            td= person.name
+            td= person.dob
+            td= person.status
+            td
+              a(class='delete btn btn-link', href='/delete/' + person.id) delete
 
-  div
-    form(action='/add', method='post')
-      input(name='name')
-      input(name='add', type='submit', value='add')
+  div(class='row')
+    a(class='new btn btn-link', href='/new') Add a new person

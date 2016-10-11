@@ -15,13 +15,17 @@ gulp.task('selenium', (done) => {
 })
 
 gulp.task('e2e', ['selenium'], () => {
-  return gulp.src('wdio.conf.js')
+  return gulp.src('test/wdio.conf.js')
     .pipe(webdriver()).on('error', () => {
       seleniumServer.kill()
       process.exit(1)
     })
-})
-
-gulp.task('test', ['e2e'], () => {
-  seleniumServer.kill()
+    .once('error', function () { // Explicit exit for gulp-mocha
+      seleniumServer.kill()
+      process.exit(1)
+    })
+    .once('end', function () {
+      seleniumServer.kill()
+      process.exit()
+    })
 })

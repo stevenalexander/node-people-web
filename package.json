@@ -12,7 +12,8 @@
     "express": "^4.13.4",
     "morgan": "~1.7.0",
     "pug": "^2.0.0-beta6",
-    "request": "^2.75.0"
+    "request": "^2.75.0",
+    "request-promise": "^4.1.1"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -23,9 +24,11 @@
     "proxyquire": "^1.7.10",
     "selenium-standalone": "^5.7.2",
     "sinon": "^1.17.5",
+    "sinon-bluebird": "^3.1.0",
     "standard": "^8.0.0",
     "supertest": "^2.0.0",
     "wdio-mocha-framework": "^0.4.3",
+    "wdio-sauce-service": "^0.2.5",
     "webdriverio": "^4.2.16"
   }
 }

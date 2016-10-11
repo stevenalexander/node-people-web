@@ -216,6 +216,11 @@
       "from": "bl@>=1.1.2 <1.2.0",
       "resolved": "https://registry.npmjs.org/bl/-/bl-1.1.2.tgz"
     },
+    "bluebird": {
+      "version": "3.4.6",
+      "from": "bluebird@>=3.4.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.4.6.tgz"
+    },
     "body-parser": {
       "version": "1.15.2",
       "from": "body-parser@>=1.15.1 <1.16.0",
@@ -2251,6 +2256,16 @@
         }
       }
     },
+    "request-promise": {
+      "version": "4.1.1",
+      "from": "request-promise@latest",
+      "resolved": "http://registry.npmjs.org/request-promise/-/request-promise-4.1.1.tgz"
+    },
+    "request-promise-core": {
+      "version": "1.1.1",
+      "from": "request-promise-core@1.1.1",
+      "resolved": "http://registry.npmjs.org/request-promise-core/-/request-promise-core-1.1.1.tgz"
+    },
     "require-uncached": {
       "version": "1.0.2",
       "from": "require-uncached@>=1.0.2 <2.0.0",
@@ -2463,6 +2478,11 @@
       "version": "1.2.1",
       "from": "statuses@>=1.2.1 <1.3.0",
       "resolved": "https://registry.npmjs.org/statuses/-/statuses-1.2.1.tgz"
+    },
+    "stealthy-require": {
+      "version": "1.0.0",
+      "from": "stealthy-require@>=1.0.0 <2.0.0",
+      "resolved": "http://registry.npmjs.org/stealthy-require/-/stealthy-require-1.0.0.tgz"
     },
     "stream-consume": {
       "version": "0.1.0",

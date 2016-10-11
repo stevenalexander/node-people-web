@@ -30,6 +30,30 @@ docker-compose up
 
 ## Test
 
+Unit tests
+
 ```
 npm test
 ```
+
+e2e tests running with selenium standalone
+
+```
+# requires running application at http://localhost:3000
+./node_modules/.bin/gulp e2e
+```
+
+e2e tests running via [saucelabs](https://saucelabs.com) (runs tests on Firefox and IE8)
+
+```
+export NODE_PEOPLE_WEB_SAUCE_USERNAME='MY_USERNAME'
+export NODE_PEOPLE_WEB_SAUCE_ACCESS_KEY='MY_KEY'
+
+./node_modules/.bin/wdio test/wdio.conf.sauce.js
+```
+
+## Links
+
+* [Saucelabs blog with link to create free account for open source project](https://saucelabs.com/blog/Announcing-Open-Sauce-free-unlimited-testing-for-Open-Source-projects)
+* [Webdriver.io saucelab documentation](http://webdriver.io/guide/services/sauce.html)
+* [Saucelabs Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
