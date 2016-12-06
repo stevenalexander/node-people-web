@@ -57,3 +57,4 @@ export NODE_PEOPLE_WEB_SAUCE_ACCESS_KEY='MY_KEY'
 * [Saucelabs blog with link to create free account for open source project](https://saucelabs.com/blog/Announcing-Open-Sauce-free-unlimited-testing-for-Open-Source-projects)
 * [Webdriver.io saucelab documentation](http://webdriver.io/guide/services/sauce.html)
 * [Saucelabs Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
+* [Node Security Platform](https://nodesecurity.io/)
