@@ -2,6 +2,7 @@
 
 [![BuildStatus](https://travis-ci.org/stevenalexander/node-people-web.svg?branch=master)](https://travis-ci.org/stevenalexander/node-people-web?branch=master)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![NSP Status](https://nodesecurity.io/orgs/moj-noms-apvs/projects/fa3d432e-2c5f-48d0-9a64-61b339699278/badge)](https://nodesecurity.io/orgs/moj-noms-apvs/projects/fa3d432e-2c5f-48d0-9a64-61b339699278)
 
 Simple [Express](https://expressjs.com/) People HTML application using [node-people-api](https://github.com/stevenalexander/node-people-api) for data.
 
@@ -57,3 +58,4 @@ export NODE_PEOPLE_WEB_SAUCE_ACCESS_KEY='MY_KEY'
 * [Saucelabs blog with link to create free account for open source project](https://saucelabs.com/blog/Announcing-Open-Sauce-free-unlimited-testing-for-Open-Source-projects)
 * [Webdriver.io saucelab documentation](http://webdriver.io/guide/services/sauce.html)
 * [Saucelabs Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
+* [Node Security Platform](https://nodesecurity.io/)
