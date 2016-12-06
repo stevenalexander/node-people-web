@@ -17,8 +17,7 @@ exports.config = {
     browserName: 'internet explorer',
     platform: 'Windows 7',
     version: '8.0'
-  }
-],
+  }],
   sync: false,
   logLevel: 'verbose',
   coloredLogs: true,
