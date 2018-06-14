@@ -1,49 +1,48 @@
+/* eslint no-unused-expressions: 0 */
 /* global describe before it */
 var expect = require('chai').expect
 var sinon = require('sinon')
 var proxyquire = require('proxyquire')
-var request = require('request-promise')
+var axios = require('axios')
 
-require('sinon-bluebird')
-
-describe('peopleApi', function () {
+describe('peopleApi', () => {
   var peopleApi
 
-  before(function () {
-    peopleApi = proxyquire('../../../app/lib/peopleApi', {'request-promise': request})
+  before(() => {
+    peopleApi = proxyquire('../../../app/lib/peopleApi', {'axios': axios})
   })
 
-  describe('get', function () {
-    it('should call API and parse body', function () {
+  describe('get', () => {
+    it('should call API and parse body', () => {
       var people = [{ name: 'Bill' }]
-      var stubGet = sinon.stub(request, 'get').resolves(people)
+      var stubGet = sinon.stub(axios, 'get').resolves(people)
 
       peopleApi.get().then(function (list) {
         expect(list[0].name).to.equal('Bill')
-        expect(stubGet.called).to.be.true
+        return expect(stubGet.called).to.be.true
       })
     })
   })
 
-  describe('add', function () {
-    it('should call API with post and data', function () {
+  describe('add', () => {
+    it('should call API with post and data', () => {
       var person = { name: 'Bill' }
       var newPerson = { id: 1, name: 'Bill' }
-      var stubPost = sinon.stub(request, 'post').resolves(newPerson)
+      var stubPost = sinon.stub(axios, 'post').resolves(newPerson)
 
       peopleApi.add(person).then(function (person) {
         expect(person.name).to.equal('Bill')
-        expect(stubPost.called).to.be.true
+        return expect(stubPost.called).to.be.true
       })
     })
   })
 
-  describe('del', function () {
-    it('should call API and delete and id', function () {
-      var stubDel = sinon.stub(request, 'delete').resolves()
+  describe('del', () => {
+    it('should call API and delete and id', () => {
+      var stubDel = sinon.stub(axios, 'delete').resolves()
 
-      peopleApi.del(1).then(function () {
-        expect(stubDel.called).to.be.true
+      peopleApi.del(1).then(() => {
+        return expect(stubDel.called).to.be.true
       })
     })
   })

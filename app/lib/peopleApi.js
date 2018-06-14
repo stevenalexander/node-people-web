@@ -1,16 +1,18 @@
-var request = require('request-promise')
+var axios = require('axios')
 var apiUrl = process.env.API_URL || 'http://localhost:3001/people/'
 
 module.exports = {
   get: function () {
-    return request.get({uri: apiUrl, json: true})
+    return axios.get(apiUrl).then((res) => {
+      return res.data
+    })
   },
 
-  add: function (item, callback) {
-    return request.post({url: apiUrl, json: true, body: item})
+  add: function (item) {
+    return axios.post(apiUrl, item)
   },
 
-  del: function (id, callback) {
-    return request.delete({url: apiUrl + id, json: true})
+  del: function (id) {
+    return axios.delete(apiUrl + id)
   }
 }

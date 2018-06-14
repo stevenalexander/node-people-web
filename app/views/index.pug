@@ -8,6 +8,7 @@ block content
           th Name
           th DOB
           th Status
+          th
       tbody
         each person in people
           tr
@@ -15,7 +16,16 @@ block content
             td= person.dob
             td= person.status
             td
-              a(class='delete btn btn-link', href='/delete/' + person.id) delete
+              form(action=`/delete/${person.id}`, method='post')
+                button.btn.btn-link(type='submit') Delete
 
   div(class='row')
-    a(class='new btn btn-link', href='/new') Add a new person
+    form(action=`/new`, method='post')
+      div.form-group
+        label(for='name') Name
+        input#name.form-control(name='name')
+      div.form-group
+        label(for='dob') Date of birth
+        input#name.form-control(name='dob' placeholder='2000-01-31')
+      div.form-group
+        button.btn.btn-default(type='submit') Add

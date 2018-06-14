@@ -1,9 +1,9 @@
-FROM node:6.5.0
+FROM node:8.11.3-alpine
 
 RUN mkdir -p /usr/src/app/app
 WORKDIR /usr/src/app
 
-COPY ["package.json", "npm-shrinkwrap.json", "/usr/src/app/"]
+COPY ["package.json", "package-lock.json", "/usr/src/app/"]
 COPY app /usr/src/app/app
 RUN export NODE_ENV=production
 RUN npm install --only=production

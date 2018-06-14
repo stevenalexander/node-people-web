@@ -25,7 +25,7 @@ npm start
 ### Run in container
 
 ```
-# Spin up MySql, node-people-api and node-people-web containers
+# Spin up PostGres, node-people-api and node-people-web containers
 docker-compose up
 ```
 
