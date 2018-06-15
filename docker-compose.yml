@@ -4,24 +4,29 @@ services:
     image: postgres:latest
     environment:
      - POSTGRES_PASSWORD=mysecretpassword
-    ports:
-     - "5432:5432"
   node-people-api:
     image: stevenalexander/node-people-api:latest
     environment:
      - POSTGRES_PASSWORD=mysecretpassword
      - POSTGRES_HOST=postgres
+    ports:
+     - "3001:3001"
     links:
      - postgres
     depends_on:
      - postgres
+  node-pet-api:
+    image: stevenalexander/node-pet-api:latest
   node-people-web:
     build: .
     ports:
      - "3000:3000"
     environment:
      - API_URL=http://node-people-api:3001/people/
+     - PETS_API_URL=http://node-pet-api:3002/pets/
     links:
      - node-people-api
+     - node-pet-api
     depends_on:
      - node-people-api
+     - node-pet-api

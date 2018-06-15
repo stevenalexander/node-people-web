@@ -1,5 +1,5 @@
 /* eslint no-unused-expressions: 0 */
-/* global describe before it */
+/* global describe before it after */
 var expect = require('chai').expect
 var sinon = require('sinon')
 var proxyquire = require('proxyquire')
@@ -15,12 +15,15 @@ describe('peopleApi', () => {
   describe('get', () => {
     it('should call API and parse body', () => {
       var people = [{ name: 'Bill' }]
-      var stubGet = sinon.stub(axios, 'get').resolves(people)
+      var stubGet = sinon.stub(axios, 'get').resolves({ data: people })
 
-      peopleApi.get().then(function (list) {
+      return peopleApi.get().then(function (list) {
         expect(list[0].name).to.equal('Bill')
         return expect(stubGet.called).to.be.true
       })
+    })
+    after(() => {
+      axios.get.restore()
     })
   })
 
@@ -30,10 +33,13 @@ describe('peopleApi', () => {
       var newPerson = { id: 1, name: 'Bill' }
       var stubPost = sinon.stub(axios, 'post').resolves(newPerson)
 
-      peopleApi.add(person).then(function (person) {
+      return peopleApi.add(person).then(function (person) {
         expect(person.name).to.equal('Bill')
         return expect(stubPost.called).to.be.true
       })
+    })
+    after(() => {
+      axios.post.restore()
     })
   })
 
@@ -41,9 +47,12 @@ describe('peopleApi', () => {
     it('should call API and delete and id', () => {
       var stubDel = sinon.stub(axios, 'delete').resolves()
 
-      peopleApi.del(1).then(() => {
+      return peopleApi.del(1).then(() => {
         return expect(stubDel.called).to.be.true
       })
+    })
+    after(() => {
+      axios.delete.restore()
     })
   })
 })

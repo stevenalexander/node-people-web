@@ -27,5 +27,14 @@ block content
       div.form-group
         label(for='dob') Date of birth
         input#name.form-control(name='dob' placeholder='2000-01-31')
+      if pets
+        div.form-group
+          each pet in pets
+            div.radio
+              label
+                input(type='radio' name='pet' value=pet)
+                = pet
+      else
+        p Pets list unavailable
       div.form-group
         button.btn.btn-default(type='submit') Add
