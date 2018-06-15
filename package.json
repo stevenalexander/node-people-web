@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./app/bin/www",
-    "test": "standard && mocha -u exports test/unit/**/*"
+    "test": "standard && mocha -u exports test/unit/**/*",
+    "test-e2e": "gulp e2e"
   },
   "dependencies": {
     "axios": "^0.18.0",
